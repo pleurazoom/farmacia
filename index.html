@@ -6,19 +6,29 @@
 </head>
 <body>
 <p>Redirigiendo a la aplicacion...</p>
-<p id="fallback" style="display:none">Si no redirige automaticamente, <a id="fallbackLink" href="#">click aqui</a>.</p>
+<p id="fallback" style="display:none">Si no redirige automaticamente, <a id="fallbackLink" href="https://tales-dental-newsletters-inquire.trycloudflare.com">click aqui</a>.</p>
 <script>
-fetch('url.txt')
+var targetUrl = '';
+fetch('url.txt?v=' + Date.now())
   .then(function(r) { return r.text(); })
   .then(function(url) {
     url = url.trim();
     if (url.startsWith('http')) {
+      targetUrl = url;
       document.getElementById('fallbackLink').href = url;
       document.getElementById('fallback').style.display = '';
       window.location.replace(url);
     }
   })
-  .catch(function() {});
+  .catch(function() {
+    document.getElementById('fallbackLink').href = 'https://tales-dental-newsletters-inquire.trycloudflare.com';
+    document.getElementById('fallback').style.display = '';
+  });
+setTimeout(function() {
+  if (!targetUrl) {
+    window.location.replace('https://tales-dental-newsletters-inquire.trycloudflare.com');
+  }
+}, 3000);
 </script>
 </body>
 </html>
