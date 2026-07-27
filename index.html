@@ -3,32 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Farmacia App</title>
+</head>
+<body>
+<p>Redirigiendo a la aplicacion...</p>
+<p id="fallback" style="display:none">Si no redirige automaticamente, <a id="fallbackLink" href="#">click aqui</a>.</p>
 <script>
 fetch('url.txt')
-  .then(r => r.text())
-  .then(url => {
+  .then(function(r) { return r.text(); })
+  .then(function(url) {
     url = url.trim();
     if (url.startsWith('http')) {
+      document.getElementById('fallbackLink').href = url;
+      document.getElementById('fallback').style.display = '';
       window.location.replace(url);
     }
   })
-  .catch(() => {});
-</script>
-</head>
-<body>
-<p>Cargando aplicacion...</p>
-<p id="link" style="display:none">Si no redirige automaticamente, <a id="fallback" href="#">click aqui</a>.</p>
-<script>
-fetch('url.txt')
-  .then(r => r.text())
-  .then(url => {
-    url = url.trim();
-    if (url.startsWith('http')) {
-      document.getElementById('fallback').href = url;
-      document.getElementById('link').style.display = '';
-    }
-  })
-  .catch(() => {});
+  .catch(function() {});
 </script>
 </body>
 </html>
