@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=https://town-comp-assigned-quad.trycloudflare.com">
 <title>Farmacia App</title>
 <script>
 fetch('url.txt')
@@ -17,7 +16,19 @@ fetch('url.txt')
 </script>
 </head>
 <body>
-<p>Redirigiendo a la aplicacion...</p>
-<p>Si no redirige automaticamente, <a href="https://town-comp-assigned-quad.trycloudflare.com">click aqui</a>.</p>
+<p>Cargando aplicacion...</p>
+<p id="link" style="display:none">Si no redirige automaticamente, <a id="fallback" href="#">click aqui</a>.</p>
+<script>
+fetch('url.txt')
+  .then(r => r.text())
+  .then(url => {
+    url = url.trim();
+    if (url.startsWith('http')) {
+      document.getElementById('fallback').href = url;
+      document.getElementById('link').style.display = '';
+    }
+  })
+  .catch(() => {});
+</script>
 </body>
 </html>
