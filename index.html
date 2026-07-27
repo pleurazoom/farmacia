@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=https://town-comp-assigned-quad.trycloudflare.com">
+<title>Farmacia App</title>
+<script>
+fetch('url.txt')
+  .then(r => r.text())
+  .then(url => {
+    url = url.trim();
+    if (url.startsWith('http')) {
+      window.location.replace(url);
+    }
+  })
+  .catch(() => {});
+</script>
+</head>
+<body>
+<p>Redirigiendo a la aplicacion...</p>
+<p>Si no redirige automaticamente, <a href="https://town-comp-assigned-quad.trycloudflare.com">click aqui</a>.</p>
+</body>
+</html>
